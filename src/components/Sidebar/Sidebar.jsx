@@ -65,6 +65,7 @@ const Sidebar = () => {
       {tabs.map((tab, tabIndex) => (
         <>
           <ListItem
+            key={tab.title}
             className={`tab ${
               selectedTab === tabIndex ? 'tab--selected' : ''
             }`}
@@ -78,6 +79,7 @@ const Sidebar = () => {
             selectedTab === tabIndex &&
             tab.subTabs.map((subTab, subTabIndex) => (
               <ListItem
+                key={subTab.title}
                 className={`sub-tab ${
                   selectedSubTab === subTabIndex
                     ? 'sub-tab--selected'

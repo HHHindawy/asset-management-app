@@ -1,0 +1,19 @@
+.header {
+  height: 100%;
+  padding-left: 72px;
+  padding-right: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  & .title {
+    font-weight: 300;
+    font-size: 20px;
+    color: #252631;
+  }
+
+  & .avatar {
+    width: 36px;
+    height: 36px;
+  }
+}
