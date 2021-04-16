@@ -1,0 +1,20 @@
+// @mixin fontFace($fontName: null, $fontType: null, $fontWeight: 400, $fontStyle: 'normal')
+// $fontName, $fontType - is required
+// folder: ../fonts/#{$fontName}/#{$fontType}/#{$fontName + $fontType}.ttf
+
+
+@mixin fontFace($fontName: null, $fontType: null, $fontWeight: 400, $fontStyle: 'normal') {
+    @if $fontName and $fontType {
+        @font-face {
+            font-family: $fontName;
+            src: url('../fonts/#{$fontName}/#{$fontType}/#{$fontName + $fontType}.eot'); /* IE9 Compat Modes */
+            src: url('../fonts/#{$fontName}/#{$fontType}/#{$fontName + $fontType}.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+            url('../fonts/#{$fontName}/#{$fontType}/#{$fontName + $fontType}.woff2') format('woff2'), /* Super Modern Browsers */
+            url('../fonts/#{$fontName}/#{$fontType}/#{$fontName + $fontType}.woff') format('woff'), /* Pretty Modern Browsers */
+            url('../fonts/#{$fontName}/#{$fontType}/#{$fontName + $fontType}.ttf')  format('truetype'), /* Safari, Android, iOS */
+            url('../fonts/#{$fontName}/#{$fontType}/#{$fontName + $fontType}.svg#svgFontName') format('svg'); /* Legacy iOS */
+            font-weight: $fontWeight;
+            font-style: $fontStyle;
+        }
+    }
+}

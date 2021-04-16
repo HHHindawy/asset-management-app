@@ -1,0 +1,10 @@
+@import "mixins";
+
+// @mixin fontFace($fontName: null, $fontType: null, $fontWeight: 400, $fontStyle: 'normal')
+// $fontName, $fontType - is required
+// folder: ../fonts/#{$fontName}/#{$fontType}/#{$fontName + $fontType}.ttf
+
+// example
+//@include fontFace('Roboto', 'Regular');
+//@include fontFace('Roboto', 'Bold', 700);
+//@include fontFace('RobotoCondensed', 'Regular');
