@@ -63,9 +63,8 @@ const Sidebar = () => {
       className="sidebar"
     >
       {tabs.map((tab, tabIndex) => (
-        <>
+        <div key={tab.title}>
           <ListItem
-            key={tab.title}
             className={`tab ${
               selectedTab === tabIndex ? 'tab--selected' : ''
             }`}
@@ -94,7 +93,7 @@ const Sidebar = () => {
                 <ListItemText primary={subTab.title} />
               </ListItem>
             ))}
-        </>
+        </div>
       ))}
     </List>
   );
