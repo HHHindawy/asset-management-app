@@ -1,5 +1,5 @@
 import Sidebar from '../Sidebar/Sidebar';
-import './styles.scss';
+import './App.scss';
 
 const App = () => {
   return (

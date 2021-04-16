@@ -4,7 +4,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Icon from '@material-ui/core/Icon';
 import logo from '../../img/logo.png';
-import './styles.scss';
+import './Sidebar.scss';
 
 const Sidebar = () => {
   const [selectedTab, setSelectedTab] = useState(1);
