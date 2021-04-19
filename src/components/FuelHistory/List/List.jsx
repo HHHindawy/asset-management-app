@@ -25,6 +25,7 @@ const List = ({
   showActions = false,
   onEdit,
   onDelete,
+  deleteLoading,
 }) => {
   const perPage = 10;
   const [selectedTimezone, setSelectedTimezone] = useState('egypt');
@@ -299,7 +300,8 @@ const List = ({
                           <IconButton
                             aria-label="delete"
                             className="delete-icon"
-                            onClick={() => onDelete(itemIndex)}
+                            disabled={deleteLoading}
+                            onClick={() => onDelete(item, itemIndex)}
                           >
                             <img src={deleteIcon} alt="edit" />
                           </IconButton>

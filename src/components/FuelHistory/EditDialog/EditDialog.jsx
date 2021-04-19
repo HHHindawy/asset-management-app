@@ -15,6 +15,7 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormLabel from '@material-ui/core/FormLabel';
 import FormControl from '@material-ui/core/FormControl';
@@ -42,7 +43,13 @@ const validationSchema = yup.object({
     .integer('Volume must be an integer number'),
 });
 
-const EditDialog = ({ isOpen, editItem, onSubmit, onCancel }) => {
+const EditDialog = ({
+  isOpen,
+  editItem,
+  onSubmit,
+  onCancel,
+  editLoading,
+}) => {
   const vehicleTypes = [
     'Toyota Avanza',
     'Toyota Corolla',
@@ -264,6 +271,7 @@ const EditDialog = ({ isOpen, editItem, onSubmit, onCancel }) => {
           onClick={onCancel}
           variant="contained"
           className="cancel-btn"
+          disabled={editLoading}
         >
           Cancel
         </Button>
@@ -272,8 +280,13 @@ const EditDialog = ({ isOpen, editItem, onSubmit, onCancel }) => {
           onClick={formik.handleSubmit}
           variant="contained"
           className="submit-btn"
+          disabled={editLoading}
         >
-          Save
+          {editLoading ? (
+            <CircularProgress color="inherit" size={20} />
+          ) : (
+            'Save'
+          )}
         </Button>
       </DialogActions>
     </Dialog>

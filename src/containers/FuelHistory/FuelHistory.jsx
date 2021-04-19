@@ -1,136 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from '../../network/axios';
 import List from '../../components/FuelHistory/List/List';
 import EditDialog from '../../components/FuelHistory/EditDialog/EditDialog';
-import vehicleImg from '../../img/vehicle.png';
 import './FuelHistory.scss';
 
 const FuelHistory = () => {
+  const [loadingHistory, setLoadingHistory] = useState(false);
+  const [editLoading, setEditLoading] = useState(false);
+  const [deleteLoading, setDeleteLoading] = useState(false);
+  const [vehicles, setVehicles] = useState([]);
   const [editDialog, setEditDialog] = useState({
     open: false,
     editItem: {},
   });
-  const [vehicles, setVehicles] = useState([
-    {
-      id: 1,
-      name: 'Toyota Avanza',
-      status: 'active',
-      startDate: '2020-01-01T00:00:00Z',
-      odometer: '17.845',
-      volume: '45',
-      cost: '625',
-      img: vehicleImg,
-    },
-    {
-      id: 2,
-      name: 'Toyota Avanza',
-      status: 'inShop',
-      startDate: '2020-01-01T00:00:00Z',
-      odometer: '17.845',
-      volume: '45',
-      cost: '625',
-      img: vehicleImg,
-    },
-    {
-      id: 3,
-      name: 'Toyota Avanza',
-      status: 'active',
-      startDate: '2021-01-01T00:00:00Z',
-      odometer: '17.845',
-      volume: '45',
-      cost: '625',
-      img: vehicleImg,
-    },
-    {
-      id: 4,
-      name: 'Toyota Avanza',
-      status: 'outOfService',
-      startDate: '2019-01-01T00:00:00Z',
-      odometer: '17.845',
-      volume: '45',
-      cost: '625',
-      img: vehicleImg,
-    },
-    {
-      id: 5,
-      name: 'Toyota Avanza',
-      status: 'active',
-      startDate: '2021-01-01T00:00:00Z',
-      odometer: '17.845',
-      volume: '45',
-      cost: '625',
-      img: vehicleImg,
-    },
-    {
-      id: 6,
-      name: 'Toyota Avanza',
-      status: 'inShop',
-      startDate: '2021-01-01T00:00:00Z',
-      odometer: '17.845',
-      volume: '45',
-      cost: '625',
-      img: vehicleImg,
-    },
-    {
-      id: 7,
-      name: 'Toyota Avanza',
-      status: 'active',
-      startDate: '2021-01-01T00:00:00Z',
-      odometer: '17.845',
-      volume: '45',
-      cost: '625',
-      img: vehicleImg,
-    },
-    {
-      id: 8,
-      name: 'Toyota Avanza',
-      status: 'outOfService',
-      startDate: '2019-01-01T00:00:00Z',
-      odometer: '17.845',
-      volume: '45',
-      cost: '625',
-      img: vehicleImg,
-    },
-    {
-      id: 9,
-      name: 'Toyota Avanza',
-      status: 'active',
-      startDate: '2018-01-01T00:00:00Z',
-      odometer: '17.845',
-      volume: '45',
-      cost: '625',
-      img: vehicleImg,
-    },
-    {
-      id: 10,
-      name: 'Toyota Avanza',
-      status: 'inShop',
-      startDate: '2020-01-01T00:00:00Z',
-      odometer: '17.845',
-      volume: '45',
-      cost: '625',
-      img: vehicleImg,
-    },
-    {
-      id: 11,
-      name: 'Toyota Avanza',
-      status: 'active',
-      startDate: '2018-01-01T00:00:00Z',
-      odometer: '17.845',
-      volume: '45',
-      cost: '625',
-      img: vehicleImg,
-    },
-    {
-      id: 12,
-      name: 'Toyota Avanza',
-      status: 'outOfService',
-      startDate: '2017-01-01T00:00:00Z',
-      odometer: '17.845',
-      volume: '45',
-      cost: '625',
-      img: vehicleImg,
-    },
-  ]);
+
+  const fetchHistory = async () => {
+    setLoadingHistory(true);
+    await axios
+      .get('/vehicles')
+      .then((response) => setVehicles(response.data))
+      .catch((error) => console.error(error))
+      .finally(() => setLoadingHistory(false));
+  };
+
+  useEffect(() => {
+    fetchHistory();
+  }, []);
 
   const headers = [
     { title: 'Vehicle' },
@@ -154,19 +49,33 @@ const FuelHistory = () => {
     });
   };
 
-  const handleDeleteVehicle = (index) => {
-    const newVehicles = [...vehicles];
-    newVehicles.splice(index, 1);
-    setVehicles(newVehicles);
+  const handleDeleteVehicle = async (vehicle, index) => {
+    setDeleteLoading(true);
+    await axios
+      .delete(`/vehicles/${vehicle.id}`)
+      .then(() => {
+        const newVehicles = [...vehicles];
+        newVehicles.splice(index, 1);
+        setVehicles(newVehicles);
+      })
+      .catch((error) => console.error(error))
+      .finally(() => setDeleteLoading(false));
   };
 
-  const handelEditVehicle = (newVehicle) => {
-    const newVehicles = vehicles.map((vehicle) => {
-      if (vehicle.id === newVehicle.id) return newVehicle;
-      return vehicle;
-    });
-    setVehicles(newVehicles);
-    handleCloseEditDialog();
+  const handelEditVehicle = async (newVehicle) => {
+    setEditLoading(true);
+    await axios
+      .put(`/vehicles/${newVehicle.id}`, newVehicle)
+      .then(() => {
+        const newVehicles = vehicles.map((vehicle) => {
+          if (vehicle.id === newVehicle.id) return newVehicle;
+          return vehicle;
+        });
+        setVehicles(newVehicles);
+        handleCloseEditDialog();
+      })
+      .catch((error) => console.error(error))
+      .finally(() => setEditLoading(false));
   };
 
   return (
@@ -175,12 +84,15 @@ const FuelHistory = () => {
         headers={headers}
         rows={vehicles}
         showActions
+        loading={loadingHistory}
+        deleteLoading={deleteLoading}
         onEdit={handleOpenEditDialog}
         onDelete={handleDeleteVehicle}
       />
       <EditDialog
         isOpen={editDialog.open}
         editItem={editDialog.editItem}
+        editLoading={editLoading}
         onSubmit={handelEditVehicle}
         onCancel={handleCloseEditDialog}
       />
