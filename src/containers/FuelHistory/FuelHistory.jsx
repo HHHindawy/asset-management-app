@@ -92,7 +92,6 @@ const FuelHistory = () => {
       <List
         headers={headers}
         rows={history}
-        showActions
         loading={loadingHistory}
         deleteLoading={deleteLoading}
         onEdit={handleOpenEditDialog}

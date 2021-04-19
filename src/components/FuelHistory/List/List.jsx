@@ -13,25 +13,20 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
-import flagImg from '../../../img/flag.png';
 import rightIcon from '../../../img/right.svg';
 import leftIcon from '../../../img/left.svg';
 import editIcon from '../../../img/edit.svg';
 import deleteIcon from '../../../img/delete.svg';
+import { timezones, sortOptions } from '../constants';
 import './List.scss';
 
-const List = ({
-  headers,
-  rows,
-  showActions = false,
-  onEdit,
-  onDelete,
-  deleteLoading,
-}) => {
-  const [selectedTimezone, setSelectedTimezone] = useState('egypt');
+const List = ({ headers, rows, onEdit, onDelete, deleteLoading }) => {
+  const [selectedTimezone, setSelectedTimezone] = useState(
+    timezones[0],
+  );
   const [perPage, setPerPage] = useState(10);
   const [selectedSortOption, setSelectedSortOption] = useState(
-    'none',
+    sortOptions[0],
   );
   const [pagination, setPagination] = useState([0, perPage]);
   const [listRows, setListRows] = useState([]);
@@ -42,29 +37,6 @@ const List = ({
     setPerPage(newPerPage);
     setPagination([pagination[0], pagination[0] + newPerPage]);
   }, [rows]);
-
-  const timezones = [
-    {
-      name: 'Egypt',
-      value: 'egypt',
-      icon: flagImg,
-    },
-  ];
-
-  const sortOptions = [
-    {
-      name: 'None',
-      value: 'none',
-    },
-    {
-      name: 'Date',
-      value: 'startDate',
-    },
-    {
-      name: 'Status',
-      value: 'status',
-    },
-  ];
 
   const handleNextPage = () => {
     let start = pagination[0] + perPage;
@@ -91,8 +63,9 @@ const List = ({
     setSelectedTimezone(timezone);
   };
 
-  const handleSelectSort = (sortKey) => {
-    setSelectedSortOption(sortKey);
+  const handleSelectSort = (sortOption) => {
+    setSelectedSortOption(sortOption);
+    const sortKey = sortOption.value;
     if (sortKey === 'none') {
       setListRows(rows);
     } else {
@@ -143,9 +116,9 @@ const List = ({
   };
 
   const renderSortKey = (key) => {
-    if (selectedSortOption === 'startDate')
+    if (selectedSortOption.value === 'startDate')
       return moment(key).format('ddd, MMM DD, YYYY');
-    if (selectedSortOption === 'status')
+    if (selectedSortOption.value === 'status')
       return getStatusInfo(key).title;
     return 'none';
   };
@@ -176,19 +149,14 @@ const List = ({
               <span className="dropdown-title">
                 Timezone:
                 <img
-                  src={
-                    timezones.find(
-                      (timezone) =>
-                        timezone.value === selectedTimezone,
-                    )?.icon
-                  }
+                  src={selectedTimezone.icon}
                   alt="timezone-flag"
                 />
               </span>
             )}
           >
             {timezones.map((timezone) => (
-              <MenuItem key={timezone.value} value={timezone.value}>
+              <MenuItem key={timezone.value} value={timezone}>
                 {timezone.name}
               </MenuItem>
             ))}
@@ -207,18 +175,13 @@ const List = ({
                 <div className="dropdown-title">
                   Sort:
                   <span className="bold">
-                    {
-                      sortOptions.find(
-                        (option) =>
-                          option.value === selectedSortOption,
-                      )?.name
-                    }
+                    {selectedSortOption.name}
                   </span>
                 </div>
               )}
             >
               {sortOptions.map((option) => (
-                <MenuItem key={option.value} value={option.value}>
+                <MenuItem key={option.value} value={option}>
                   {option.name}
                 </MenuItem>
               ))}
@@ -239,14 +202,14 @@ const List = ({
                   {header.title}
                 </TableCell>
               ))}
-              {showActions && <TableCell>Actions</TableCell>}
+              <TableCell>Actions</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {Object.entries(
               getGroupedItems(
                 listRows.slice(pagination[0], pagination[1]),
-                selectedSortOption,
+                selectedSortOption.value,
               ),
             ).map(([sortKey, items]) => (
               <React.Fragment key={sortKey}>
@@ -293,27 +256,26 @@ const List = ({
                         /ltr
                       </div>
                     </TableCell>
-                    {showActions && (
-                      <TableCell align="left">
-                        <div className="actions-container">
-                          <IconButton
-                            aria-label="edit"
-                            className="edit-icon"
-                            onClick={() => onEdit(item)}
-                          >
-                            <img src={editIcon} alt="edit" />
-                          </IconButton>
-                          <IconButton
-                            aria-label="delete"
-                            className="delete-icon"
-                            disabled={deleteLoading}
-                            onClick={() => onDelete(item, itemIndex)}
-                          >
-                            <img src={deleteIcon} alt="edit" />
-                          </IconButton>
-                        </div>
-                      </TableCell>
-                    )}
+
+                    <TableCell align="left">
+                      <div className="actions-container">
+                        <IconButton
+                          aria-label="edit"
+                          className="edit-icon"
+                          onClick={() => onEdit(item)}
+                        >
+                          <img src={editIcon} alt="edit" />
+                        </IconButton>
+                        <IconButton
+                          aria-label="delete"
+                          className="delete-icon"
+                          disabled={deleteLoading}
+                          onClick={() => onDelete(item, itemIndex)}
+                        >
+                          <img src={deleteIcon} alt="edit" />
+                        </IconButton>
+                      </div>
+                    </TableCell>
                   </TableRow>
                 ))}
               </React.Fragment>
