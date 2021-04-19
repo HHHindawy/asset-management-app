@@ -66,11 +66,16 @@ const EditDialog = ({
       startDate: editItem.startDate || '',
       odometer: editItem.odometer || '',
       volume: editItem.volume || '',
-      fuelType: editItem.fuelType || '',
+      fuelType: editItem.fuelType || 'none',
     },
     validationSchema,
     onSubmit: (values) => {
-      onSubmit({ ...editItem, ...values, id: editItem.id });
+      onSubmit({
+        ...editItem,
+        ...values,
+        fuelType:
+          values.fuelType === 'none' ? undefined : values.fuelType,
+      });
     },
   });
 
@@ -260,6 +265,9 @@ const EditDialog = ({
                 value={formik.values.fuelType}
                 onChange={formik.handleChange}
               >
+                <MenuItem key="none" value="none" disabled>
+                  Select One
+                </MenuItem>
                 {fuelTypes.map((type) => (
                   <MenuItem key={type} value={type}>
                     {type}
