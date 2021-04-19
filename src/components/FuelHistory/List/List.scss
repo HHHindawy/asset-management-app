@@ -53,6 +53,11 @@
           display: flex;
           align-items: center;
 
+          & .bold {
+            color: $bold-text;
+            margin-left: 5px;
+          }
+
           & img {
             margin-left: 5px;
             width: 29px;

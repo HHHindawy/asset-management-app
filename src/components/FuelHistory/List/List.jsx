@@ -197,14 +197,17 @@ const List = ({
               value={selectedSortOption}
               onChange={(e) => handleSelectSort(e.target.value)}
               renderValue={() => (
-                <span className="dropdown-title">
-                  Sort:{' '}
-                  {
-                    sortOptions.find(
-                      (option) => option.value === selectedSortOption,
-                    )?.name
-                  }
-                </span>
+                <div className="dropdown-title">
+                  Sort:
+                  <span className="bold">
+                    {
+                      sortOptions.find(
+                        (option) =>
+                          option.value === selectedSortOption,
+                      )?.name
+                    }
+                  </span>
+                </div>
               )}
             >
               {sortOptions.map((option) => (
