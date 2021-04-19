@@ -3,6 +3,7 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import moment from 'moment';
 import MomentUtils from '@date-io/moment';
+import ExpandMore from '@material-ui/icons/ExpandMore';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
@@ -117,6 +118,7 @@ const EditDialog = ({
                 }`}
                 variant="outlined"
                 fullWidth
+                IconComponent={ExpandMore}
                 value={formik.values.vehicle}
                 onChange={formik.handleChange}
               >
@@ -254,6 +256,7 @@ const EditDialog = ({
                 }`}
                 variant="outlined"
                 fullWidth
+                IconComponent={ExpandMore}
                 value={formik.values.fuelType}
                 onChange={formik.handleChange}
               >

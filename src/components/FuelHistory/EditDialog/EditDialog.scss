@@ -34,6 +34,10 @@
       height: 46px;
       border: 1px solid $light-border;
 
+      & svg {
+        color: $primary-text;
+      }
+
       & div {
         &:focus {
           background-color: #FFFFFF;

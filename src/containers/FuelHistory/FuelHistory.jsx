@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { toast } from 'react-toastify';
 import axios from '../../network/axios';
 import List from '../../components/FuelHistory/List/List';
 import EditDialog from '../../components/FuelHistory/EditDialog/EditDialog';
@@ -19,7 +20,9 @@ const FuelHistory = () => {
     await axios
       .get('/history')
       .then((response) => setHistory(response.data))
-      .catch((error) => console.error(error))
+      .catch(() =>
+        toast.error('Something went wrong while fetching history!'),
+      )
       .finally(() => setLoadingHistory(false));
   };
 
@@ -57,8 +60,11 @@ const FuelHistory = () => {
         const newHistory = [...history];
         newHistory.splice(index, 1);
         setHistory(newHistory);
+        toast.success('Record deleted successfully!');
       })
-      .catch((error) => console.error(error))
+      .catch(() =>
+        toast.error('Something went wrong while deleting record!'),
+      )
       .finally(() => setDeleteLoading(false));
   };
 
@@ -73,8 +79,11 @@ const FuelHistory = () => {
         });
         setHistory(newHistory);
         handleCloseEditDialog();
+        toast.success('Record updated successfully!');
       })
-      .catch((error) => console.error(error))
+      .catch(() =>
+        toast.error('Something went wrong while updating record!'),
+      )
       .finally(() => setEditLoading(false));
   };
 

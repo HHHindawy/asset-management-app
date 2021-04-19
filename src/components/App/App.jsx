@@ -1,4 +1,5 @@
 import React from 'react';
+import { ToastContainer } from 'react-toastify';
 import {
   createMuiTheme,
   ThemeProvider,
@@ -6,6 +7,7 @@ import {
 import FuelHistoryContainer from '../../containers/FuelHistory/FuelHistory';
 import Sidebar from '../Sidebar/Sidebar';
 import Header from '../Header/Header';
+import 'react-toastify/dist/ReactToastify.css';
 import './App.scss';
 
 const App = () => {
@@ -17,6 +19,12 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar
+        closeOnClick
+      />
       <div className="app-container">
         <Sidebar />
         <div className="app-content">

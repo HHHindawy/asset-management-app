@@ -65,6 +65,10 @@
           }
         }
 
+        & svg {
+          color: $primary-text;
+        }
+
         & div {
           padding: 0;
 
@@ -163,25 +167,6 @@
         & .edit-icon {
           color: $warning-color;
         }
-      }
-    }
-  }
-}
-
-.edit-dialog {
-  &-title {
-    font-weight: 300;
-    font-size: 20px;
-    padding: 20px 25px;
-
-    .close {
-      position: absolute;
-      right: 0;
-      top: 0;
-      padding: 20px 25px;
-
-      & span {
-        font-size: 18px;
       }
     }
   }

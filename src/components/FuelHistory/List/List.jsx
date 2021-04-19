@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import moment from 'moment';
 import Button from '@material-ui/core/Button';
+import ExpandMore from '@material-ui/icons/ExpandMore';
 import IconButton from '@material-ui/core/IconButton';
 import Avatar from '@material-ui/core/Avatar';
 import Table from '@material-ui/core/Table';
@@ -27,8 +28,8 @@ const List = ({
   onDelete,
   deleteLoading,
 }) => {
-  const perPage = 10;
   const [selectedTimezone, setSelectedTimezone] = useState('egypt');
+  const [perPage, setPerPage] = useState(10);
   const [selectedSortOption, setSelectedSortOption] = useState(
     'none',
   );
@@ -37,6 +38,9 @@ const List = ({
 
   useEffect(() => {
     setListRows(rows);
+    const newPerPage = rows.length > 10 ? 10 : rows.length;
+    setPerPage(newPerPage);
+    setPagination([pagination[0], pagination[0] + newPerPage]);
   }, [rows]);
 
   const timezones = [
@@ -66,8 +70,8 @@ const List = ({
     let start = pagination[0] + perPage;
     let end = start + perPage;
     if (start < 0) start = 0;
-    if (start > rows.length) [start, end] = pagination;
-    if (end > rows.length) end = rows.length;
+    if (start >= rows.length) [start, end] = pagination;
+    if (end >= rows.length) end = rows.length;
     if (end < 0) [start, end] = pagination;
     setPagination([start, end]);
   };
@@ -76,8 +80,8 @@ const List = ({
     let start = pagination[0] - perPage;
     let end = start + perPage;
     if (start < 0) [start, end] = [0, perPage];
-    if (start > rows.length) [start, end] = pagination;
-    if (end > rows.length)
+    if (start >= rows.length) [start, end] = pagination;
+    if (end >= rows.length)
       [start, end] = [rows.length - perPage, rows.length];
     if (end < perPage) [start, end] = pagination;
     setPagination([start, end]);
@@ -166,6 +170,7 @@ const List = ({
             variant="outlined"
             fullWidth
             value={selectedTimezone}
+            IconComponent={ExpandMore}
             onChange={(e) => handleSelectTimezone(e.target.value)}
             renderValue={() => (
               <span className="dropdown-title">
@@ -196,6 +201,7 @@ const List = ({
               variant="outlined"
               fullWidth
               value={selectedSortOption}
+              IconComponent={ExpandMore}
               onChange={(e) => handleSelectSort(e.target.value)}
               renderValue={() => (
                 <div className="dropdown-title">
