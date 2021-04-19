@@ -1,6 +1,25 @@
 @import '../../../scss/variables';
 
 .edit-dialog {
+  & .title {
+    font-weight: 300;
+    font-size: 20px;
+    padding: 20px 25px;
+    color: $bold-text;
+
+    .close {
+      position: absolute;
+      right: 0;
+      top: 5px;
+      padding: 20px 25px;
+      color: $primary-text;
+
+      & span {
+        font-size: 18px;
+      }
+    }
+  }
+
   & .form {
     padding: 25px 0 93px;
 

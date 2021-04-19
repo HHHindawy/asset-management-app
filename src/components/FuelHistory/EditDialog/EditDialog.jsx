@@ -83,7 +83,7 @@ const EditDialog = ({
       <DialogTitle
         disableTypography
         id="edit-dialog-title"
-        className="edit-dialog-title"
+        className="title"
       >
         Edit Fuel Entry
         <IconButton
