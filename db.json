@@ -1,0 +1,124 @@
+{
+  "vehicles": [
+    {
+       "id":1,
+       "name":"Toyota Avanza",
+       "status":"active",
+       "startDate":"2020-01-01T00:00:00Z",
+       "odometer":"17.845",
+       "volume":"45",
+       "cost":"625",
+       "img":"vehicleImg"
+    },
+    {
+       "id":2,
+       "name":"Toyota Avanza",
+       "status":"inShop",
+       "startDate":"2020-01-01T00:00:00Z",
+       "odometer":"17.845",
+       "volume":"45",
+       "cost":"625",
+       "img":"vehicleImg"
+    },
+    {
+       "id":3,
+       "name":"Toyota Avanza",
+       "status":"active",
+       "startDate":"2021-01-01T00:00:00Z",
+       "odometer":"17.845",
+       "volume":"45",
+       "cost":"625",
+       "img":"vehicleImg"
+    },
+    {
+       "id":4,
+       "name":"Toyota Avanza",
+       "status":"outOfService",
+       "startDate":"2019-01-01T00:00:00Z",
+       "odometer":"17.845",
+       "volume":"45",
+       "cost":"625",
+       "img":"vehicleImg"
+    },
+    {
+       "id":5,
+       "name":"Toyota Avanza",
+       "status":"active",
+       "startDate":"2021-01-01T00:00:00Z",
+       "odometer":"17.845",
+       "volume":"45",
+       "cost":"625",
+       "img":"vehicleImg"
+    },
+    {
+       "id":6,
+       "name":"Toyota Avanza",
+       "status":"inShop",
+       "startDate":"2021-01-01T00:00:00Z",
+       "odometer":"17.845",
+       "volume":"45",
+       "cost":"625",
+       "img":"vehicleImg"
+    },
+    {
+       "id":7,
+       "name":"Toyota Avanza",
+       "status":"active",
+       "startDate":"2021-01-01T00:00:00Z",
+       "odometer":"17.845",
+       "volume":"45",
+       "cost":"625",
+       "img":"vehicleImg"
+    },
+    {
+       "id":8,
+       "name":"Toyota Avanza",
+       "status":"outOfService",
+       "startDate":"2019-01-01T00:00:00Z",
+       "odometer":"17.845",
+       "volume":"45",
+       "cost":"625",
+       "img":"vehicleImg"
+    },
+    {
+       "id":9,
+       "name":"Toyota Avanza",
+       "status":"active",
+       "startDate":"2018-01-01T00:00:00Z",
+       "odometer":"17.845",
+       "volume":"45",
+       "cost":"625",
+       "img":"vehicleImg"
+    },
+    {
+       "id":10,
+       "name":"Toyota Avanza",
+       "status":"inShop",
+       "startDate":"2020-01-01T00:00:00Z",
+       "odometer":"17.845",
+       "volume":"45",
+       "cost":"625",
+       "img":"vehicleImg"
+    },
+    {
+       "id":11,
+       "name":"Toyota Avanza",
+       "status":"active",
+       "startDate":"2018-01-01T00:00:00Z",
+       "odometer":"17.845",
+       "volume":"45",
+       "cost":"625",
+       "img":"vehicleImg"
+    },
+    {
+       "id":12,
+       "name":"Toyota Avanza",
+       "status":"outOfService",
+       "startDate":"2017-01-01T00:00:00Z",
+       "odometer":"17.845",
+       "volume":"45",
+       "cost":"625",
+       "img":"vehicleImg"
+    }
+ ]
+}
