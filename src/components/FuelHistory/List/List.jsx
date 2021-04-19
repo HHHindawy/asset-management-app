@@ -249,9 +249,9 @@ const List = ({
                 selectedSortOption,
               ),
             ).map(([sortKey, items]) => (
-              <>
+              <React.Fragment key={sortKey}>
                 {renderSortKey(sortKey) !== 'none' && (
-                  <div key={sortKey} className="group-title">
+                  <div className="group-title">
                     {renderSortKey(sortKey)}
                   </div>
                 )}
@@ -316,7 +316,7 @@ const List = ({
                     )}
                   </TableRow>
                 ))}
-              </>
+              </React.Fragment>
             ))}
           </TableBody>
         </Table>
