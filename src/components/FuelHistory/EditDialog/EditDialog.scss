@@ -24,6 +24,10 @@
       & fieldset {
         border: none;
       }
+
+      &.error {
+        border: 1px solid $error-border;
+      }
     }
 
     & .date-field {
@@ -61,6 +65,10 @@
       & p {
         font-size: 14px;
         color: rgba(37, 38, 49, 0.5);
+      }
+
+      &.error {
+        border: 1px solid $error-border;
       }
     }
   }

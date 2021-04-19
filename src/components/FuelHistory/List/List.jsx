@@ -259,7 +259,7 @@ const List = ({
                           className="avatar"
                         />
                         <div>
-                          <div className="name">{item.name}</div>
+                          <div className="name">{item.vehicle}</div>
                           <div
                             className={`status ${
                               getStatusInfo(item.status).className

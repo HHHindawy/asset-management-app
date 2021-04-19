@@ -8,7 +8,7 @@ const FuelHistory = () => {
   const [loadingHistory, setLoadingHistory] = useState(false);
   const [editLoading, setEditLoading] = useState(false);
   const [deleteLoading, setDeleteLoading] = useState(false);
-  const [vehicles, setVehicles] = useState([]);
+  const [history, setHistory] = useState([]);
   const [editDialog, setEditDialog] = useState({
     open: false,
     editItem: {},
@@ -17,8 +17,8 @@ const FuelHistory = () => {
   const fetchHistory = async () => {
     setLoadingHistory(true);
     await axios
-      .get('/vehicles')
-      .then((response) => setVehicles(response.data))
+      .get('/history')
+      .then((response) => setHistory(response.data))
       .catch((error) => console.error(error))
       .finally(() => setLoadingHistory(false));
   };
@@ -35,10 +35,10 @@ const FuelHistory = () => {
     { title: 'Cost' },
   ];
 
-  const handleOpenEditDialog = (vehicle) => {
+  const handleOpenEditDialog = (record) => {
     setEditDialog({
       open: true,
-      editItem: vehicle,
+      editItem: record,
     });
   };
 
@@ -49,29 +49,29 @@ const FuelHistory = () => {
     });
   };
 
-  const handleDeleteVehicle = async (vehicle, index) => {
+  const handleDeleteRecord = async (record, index) => {
     setDeleteLoading(true);
     await axios
-      .delete(`/vehicles/${vehicle.id}`)
+      .delete(`/history/${record.id}`)
       .then(() => {
-        const newVehicles = [...vehicles];
-        newVehicles.splice(index, 1);
-        setVehicles(newVehicles);
+        const newHistory = [...history];
+        newHistory.splice(index, 1);
+        setHistory(newHistory);
       })
       .catch((error) => console.error(error))
       .finally(() => setDeleteLoading(false));
   };
 
-  const handelEditVehicle = async (newVehicle) => {
+  const handelEditRecord = async (newRecord) => {
     setEditLoading(true);
     await axios
-      .put(`/vehicles/${newVehicle.id}`, newVehicle)
+      .put(`/history/${newRecord.id}`, newRecord)
       .then(() => {
-        const newVehicles = vehicles.map((vehicle) => {
-          if (vehicle.id === newVehicle.id) return newVehicle;
-          return vehicle;
+        const newHistory = history.map((record) => {
+          if (record.id === newRecord.id) return newRecord;
+          return record;
         });
-        setVehicles(newVehicles);
+        setHistory(newHistory);
         handleCloseEditDialog();
       })
       .catch((error) => console.error(error))
@@ -82,18 +82,18 @@ const FuelHistory = () => {
     <div className="fuel-history">
       <List
         headers={headers}
-        rows={vehicles}
+        rows={history}
         showActions
         loading={loadingHistory}
         deleteLoading={deleteLoading}
         onEdit={handleOpenEditDialog}
-        onDelete={handleDeleteVehicle}
+        onDelete={handleDeleteRecord}
       />
       <EditDialog
         isOpen={editDialog.open}
         editItem={editDialog.editItem}
         editLoading={editLoading}
-        onSubmit={handelEditVehicle}
+        onSubmit={handelEditRecord}
         onCancel={handleCloseEditDialog}
       />
     </div>

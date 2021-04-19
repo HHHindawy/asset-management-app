@@ -61,7 +61,7 @@ const EditDialog = ({
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
-      vehicle: editItem.name || '',
+      vehicle: editItem.vehicle || '',
       startDate: editItem.startDate || '',
       odometer: editItem.odometer || '',
       volume: editItem.volume || '',
@@ -109,7 +109,12 @@ const EditDialog = ({
               </FormLabel>
               <Select
                 name="vehicle"
-                className="dropdown-field"
+                className={`dropdown-field ${
+                  formik.touched.vehicle &&
+                  Boolean(formik.errors.vehicle)
+                    ? 'error'
+                    : ''
+                }`}
                 variant="outlined"
                 fullWidth
                 value={formik.values.vehicle}
@@ -132,12 +137,7 @@ const EditDialog = ({
 
           <Grid item xs={6}>
             <MuiPickersUtilsProvider utils={MomentUtils}>
-              <FormControl
-                error={
-                  formik.touched.startDate &&
-                  Boolean(formik.errors.startDate)
-                }
-              >
+              <FormControl>
                 <FormLabel className="input-label" component="legend">
                   Start Date
                 </FormLabel>
@@ -150,25 +150,17 @@ const EditDialog = ({
                   margin="none"
                   format="DD/MM/YYYY"
                   InputAdornmentProps={{ position: 'start' }}
+                  InputProps={{ readOnly: true }}
                   value={formik.values.startDate}
                   onChange={(date) =>
                     formik.handleChange({
                       target: {
                         name: 'startDate',
-                        value: moment(date).format(),
+                        value: date ? moment(date).format() : '',
                       },
                     })
                   }
-                  KeyboardButtonProps={{
-                    'aria-label': 'change date',
-                  }}
                 />
-                {formik.touched.startDate &&
-                  Boolean(formik.errors.startDate) && (
-                    <FormHelperText>
-                      {formik.errors.startDate}
-                    </FormHelperText>
-                  )}
               </FormControl>
             </MuiPickersUtilsProvider>
           </Grid>
@@ -185,7 +177,12 @@ const EditDialog = ({
               </FormLabel>
               <TextField
                 name="odometer"
-                className="input-field"
+                className={`input-field ${
+                  formik.touched.odometer &&
+                  Boolean(formik.errors.odometer)
+                    ? 'error'
+                    : ''
+                }`}
                 variant="outlined"
                 value={formik.values.odometer}
                 onChange={formik.handleChange}
@@ -214,7 +211,12 @@ const EditDialog = ({
               <TextField
                 name="volume"
                 id="volume"
-                className="input-field"
+                className={`input-field ${
+                  formik.touched.volume &&
+                  Boolean(formik.errors.volume)
+                    ? 'error'
+                    : ''
+                }`}
                 variant="outlined"
                 value={formik.values.volume}
                 onChange={formik.handleChange}
@@ -244,7 +246,12 @@ const EditDialog = ({
               </FormLabel>
               <Select
                 name="fuelType"
-                className="dropdown-field"
+                className={`dropdown-field ${
+                  formik.touched.fuelType &&
+                  Boolean(formik.errors.fuelType)
+                    ? 'error'
+                    : ''
+                }`}
                 variant="outlined"
                 fullWidth
                 value={formik.values.fuelType}
