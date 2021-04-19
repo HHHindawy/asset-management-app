@@ -5,9 +5,8 @@ html {
 body {
   height: 100%;
   margin: 0;
-  font-family: 'Rubik', sans-serif,
-  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-  sans-serif;
+  overflow: hidden;
+  font-family: 'Rubik', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

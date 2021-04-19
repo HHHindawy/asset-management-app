@@ -1,3 +1,5 @@
+@import '../../scss/variables';
+
 .app-container {
   display: flex;
   height: 100%;
@@ -13,18 +15,22 @@
   &-header {
     height: 66px;
     background-color: #FFFFFF;
-    border-bottom: 1px solid #E8ECEF;
+    border-bottom: 1px solid $light-border;
     position: fixed;
     top: 0;
     left: 241px;
     right: 0;
+    z-index: 2;
   }
 
   &-body {
     position: absolute;
     top: 67px;
-    background-color: #F8FAFB;
-    height: 100%;
+    right: 0;
+    left: 241px;
+    bottom: 0;
+    padding: 64px 27px;
+    background-color: $bg-color;
     overflow-y: auto;
   }
 }

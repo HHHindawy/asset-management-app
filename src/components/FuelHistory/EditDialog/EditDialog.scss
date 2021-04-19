@@ -1,0 +1,94 @@
+@import '../../../scss/variables';
+
+.edit-dialog {
+  & .form {
+    padding: 25px 0 93px;
+
+    & .input-label {
+      font-weight: normal;
+      font-size: 14px;
+      color: $primary-text;
+      margin-bottom: 5px;
+    }
+
+    & .dropdown-field {
+      height: 46px;
+      border: 1px solid $light-border;
+
+      & div {
+        &:focus {
+          background-color: #FFFFFF;
+        }
+      }
+
+      & fieldset {
+        border: none;
+      }
+    }
+
+    & .date-field {
+      height: 46px;
+      border: 1px solid $light-border;
+
+      & fieldset {
+        border: none;
+      }
+
+      & div {
+        height: 46px;
+      }
+
+      & button {
+        color: $secondary-text;
+      }
+    }
+
+    & .input-field {
+      border: 1px solid $light-border;
+      height: 46px;
+      padding: 15px 20px;
+      color: $bold-text;
+
+      & fieldset {
+        border: none;
+      }
+
+      & input {
+        padding: 0;
+        box-shadow: none;
+      }
+
+      & p {
+        font-size: 14px;
+        color: rgba(37, 38, 49, 0.5);
+      }
+    }
+  }
+
+  & .actions-container {
+    padding: 15px 25px;
+
+    & button {
+      box-shadow: none;
+      border-radius: 4px;
+      height: 46px;
+      width: 85px;
+      text-transform: none;
+
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+
+    & .submit-btn {
+      background-color: $primary-color;
+      color: #FFFFFF;
+    }
+
+    & .cancel-btn {
+      background-color: #FFFFFF;
+      color: $primary-text;
+      border: 1px solid $bold-border;
+    }
+  }
+}

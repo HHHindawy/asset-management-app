@@ -1,0 +1,179 @@
+@import '../../../scss/variables';
+
+.data-list {
+  & .actions {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    & .pagination-text {
+      font-weight: normal;
+      font-size: 14px;
+      color: $primary-text;
+    }
+
+    & .pagination-buttons {
+      margin-left: 14px;
+
+      button {
+        color: $primary-text;
+        min-width: 47px;
+        width: 47px;
+        height: 46px;
+        background-color: #FFFFFF;
+        border: 1px solid $light-border;
+        border-radius: 0px 4px 4px 0px;
+
+        &:first-of-type {
+          margin-right: -1px;
+          border-radius: 4px 0px 0px 4px;
+        }
+      }
+    }
+
+    & .dropdown-container {
+      margin-left: 14px;
+      width: 186px;
+
+      & .dropdown {
+        height: 46px;
+        padding-left: 15px;
+        padding-right: 15px;
+        background-color: #FFFFFF;
+        border: 1px solid $light-border;
+        border-radius: 4px;
+        display: flex;
+        justify-content: space-between;
+
+        &-title {
+          font-weight: normal;
+          font-size: 14px;
+          color: $secondary-text;
+          display: flex;
+          align-items: center;
+
+          & img {
+            margin-left: 5px;
+            width: 29px;
+            height: 14px;
+          }
+        }
+
+        & div {
+          padding: 0;
+
+          &:focus {
+            background-color: #FFFFFF;
+          }
+        }
+
+        & fieldset {
+          border: none;
+        }
+      }
+    }
+  }
+
+  & .data-table-container {
+    border: 1px solid $light-border;
+
+    & .data-table {
+      background-color: $bg-color;
+
+      & th {
+        color: $secondary-text;
+      }
+
+      & tbody {
+        & .group-title {
+          height: 40px;
+          display: flex;
+          align-items: center;
+          padding: 0 16px;
+          font-weight: 500;
+          font-size: 12px;
+          color: $bold-text;
+          letter-spacing: 0.3px;
+        }
+
+        & tr {
+          background-color: #FFFFFF;
+
+          & td {
+            color: $secondary-text;
+            font-size: 14px;
+            padding: 10px 15px;
+
+            & .subtitle {
+              font-size: 12px;
+            }
+
+            & .name-field {
+              display: flex;
+              align-items: center;
+
+              & .name {
+                color: $bold-text;
+              }
+
+              & .status {
+                font-weight: normal;
+                font-size: 12px;
+
+                &.active {
+                  color: $success-text;
+                }
+
+                &.out-of-service {
+                  color: $danger-text;
+                }
+
+                &.in-shop {
+                  color: $warning-text;
+                }
+              }
+
+              & .avatar {
+                margin-right: 10px;
+              }
+            }
+          }
+        }
+      }
+
+      & .actions-container {
+        & span {
+          font-size: 22px;
+        }
+
+        & .delete-icon {
+          color: $danger-color;
+        }
+
+        & .edit-icon {
+          color: $warning-color;
+        }
+      }
+    }
+  }
+}
+
+.edit-dialog {
+  &-title {
+    font-weight: 300;
+    font-size: 20px;
+    padding: 20px 25px;
+
+    .close {
+      position: absolute;
+      right: 0;
+      top: 0;
+      padding: 20px 25px;
+
+      & span {
+        font-size: 18px;
+      }
+    }
+  }
+}

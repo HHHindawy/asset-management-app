@@ -1,3 +1,5 @@
+@import '../../scss/variables';
+
 .header {
   height: 100%;
   padding-left: 72px;
@@ -9,7 +11,7 @@
   & .title {
     font-weight: 300;
     font-size: 20px;
-    color: #252631;
+    color: $bold-text;
   }
 
   & .avatar {
